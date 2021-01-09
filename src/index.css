@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+	background-color: #1c0f24;
+	color: white;
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva,
+		Verdana, sans-serif;
+	padding: 3rem;
+}
+input {
+	padding: 1rem;
+	border: none;
+	border-radius: 5px;
+	background-color: rgb(225, 229, 236);
+}
