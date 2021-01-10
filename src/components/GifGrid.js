@@ -1,5 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
+import { getGifs } from '../helpers/getGifs';
+import { useFetchGifs } from '../hook/useFetchGifs';
 import { GifGridItem } from './GifGridItem';
 
 export const GifGrid = ({ category }) => {
@@ -7,39 +9,26 @@ export const GifGrid = ({ category }) => {
 	// const [count, setCount] = useState(0);
 	// const [imagenes, setImagenes] = useState([]);
 
-	const [images, setImages] = useState([]);
+	// const [images, setImages] = useState([]);
+
+	const { loading } = useFetchGifs();
 
 	// el use effect me permitira ejecutar codigo de manera condicional, util cuando tengo un ciclo infinito de ejecucion
 	// este recibe una funcion la cual es la que quiero ejecutar
-	useEffect(
-		() => {
-			getGifs();
-		}, // el segundo parametro que recibe es un array de dependencias, si este se encuentra vacio solo se ejecutara una vez el useEffect
-		[]
-	);
+	// useEffect(
+	// 	() => {
+	// 		// ahora esta funcion viene de los helpers y como retorna una promise
+	// 		// lo que odemos hacer asignarselas al set images
+	// 		getGifs(category).then(setImages);
+	// 	}, // el segundo parametro que recibe es un array de dependencias, si este se encuentra vacio solo se ejecutara una vez el useEffect
+	// 	[category]
+	// );
 
-	const getGifs = async () => {
-		const url =
-			'https://api.giphy.com/v1/gifs/search?q=Rick and Morty&limit=10&api_key=HvDSv0nZxtqqPXOpf4m5XhTF5kWv5gKa';
-		const response = await fetch(url);
-		const { data } = await response.json();
-		const gifs = data.map((img) => {
-			return {
-				id: img.id,
-				title: img.title,
-				url: img.images?.downsized_large.url,
-			};
-		});
-		console.log(gifs);
-		// aca le estamos asignando un nuevo estado a setImages cargando las imagenes que acabamos de obtener
-		// ahora en el array de images estara guardada la data de gifs
-		setImages(gifs);
-	};
-	// getGifs();
 	return (
 		<>
 			<div className="card-grid">
 				<h3>{category}</h3>
+				{loading ? 'Cargando...' : 'carga culminada.'}
 				{/* {
 					imagenes.map(
 						(img) => (
@@ -49,14 +38,11 @@ export const GifGrid = ({ category }) => {
 						/>
 					))
 				} */}
-
 				{/* este boton disparara la ejecucion de un useState
 				<h3>{count}</h3>
 				<button onClick={()=> setCount(count + 1)}>setCount +1</button> */}
-
 				{/*<ol>
 				Cuando una funcion no tiene las {} es que tiene un return implicito () */}
-
 				{/* tarea, mostrar los elementos del use state en lista y que la key sea el id de images */}
 				{/* {images.map(img => (
 						<li key={img.id}>
@@ -65,21 +51,18 @@ export const GifGrid = ({ category }) => {
 						</li>
 					))}
 				</ol> */}
-				{images.map(
+				{/* {images.map(
 					(img) => (
 						{
-							/* integracion de componente gifGridItem */
-						},
-						(
-							<GifGridItem
+							/* integracion de componente gifGridItem */},
+				(
+				{/* <GifGridItem
 								key={img.id}
 								// vamos a enviarle las propiedades individuales al componente,
 								// esto con la ayuda de spread ... del array de images en el object img
 								{...img}
-							/>
-						)
-					)
-				)}
+							/> */}
+				{/* ) ) )} */} */}
 			</div>
 		</>
 	);

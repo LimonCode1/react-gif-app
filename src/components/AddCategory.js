@@ -12,7 +12,7 @@ export const AddCategory = ({ setCategories }) => {
 			console.log('ya se envio 🐶 ');
 			// aca llamar el set categories
 			// se recibe el setcategories y se agrega el inutvalue al array cada vez que se da enter
-			setCategories((c) => [...c, inputValue]);
+			setCategories((c) => [inputValue, ...c]);
 			setinputValue('');
 		}
 	};
@@ -20,7 +20,11 @@ export const AddCategory = ({ setCategories }) => {
 		<form onSubmit={handleSubmit}>
 			<h2>Add Categorie</h2>
 			<p>{inputValue}</p>
-			<input type="text" value={inputValue} onChange={handleInputChange}></input>
+			<input
+				type="text"
+				value={inputValue}
+				onChange={handleInputChange}
+			></input>
 		</form>
 	);
 };
