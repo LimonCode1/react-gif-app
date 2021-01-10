@@ -3,11 +3,20 @@ import { useEffect, useState } from 'react';
 import { GifGridItem } from './GifGridItem';
 
 export const GifGrid = ({ category }) => {
-	const [imagenes, setImagenes] = useState([]);
+	// este useState es de ejemplo para comprender el useEffect video 74.
+	// const [count, setCount] = useState(0);
+	// const [imagenes, setImagenes] = useState([]);
 
-	useEffect(() => {
-		getGifs();
-	}, []);
+	const [images, setImages] = useState([]);
+
+	// el use effect me permitira ejecutar codigo de manera condicional, util cuando tengo un ciclo infinito de ejecucion
+	// este recibe una funcion la cual es la que quiero ejecutar
+	useEffect(
+		() => {
+			getGifs();
+		}, // el segundo parametro que recibe es un array de dependencias, si este se encuentra vacio solo se ejecutara una vez el useEffect
+		[]
+	);
 
 	const getGifs = async () => {
 		const url =
@@ -18,25 +27,60 @@ export const GifGrid = ({ category }) => {
 			return {
 				id: img.id,
 				title: img.title,
-				url: img.images.downsized_large.url,
+				url: img.images?.downsized_large.url,
 			};
 		});
-		// console.log(gifs);
-		setImagenes(gifs);
+		console.log(gifs);
+		// aca le estamos asignando un nuevo estado a setImages cargando las imagenes que acabamos de obtener
+		// ahora en el array de images estara guardada la data de gifs
+		setImages(gifs);
 	};
-
+	// getGifs();
 	return (
-		<div>
-			<h3>{category}</h3>
-			{
-				imagenes.map(
+		<>
+			<div className="card-grid">
+				<h3>{category}</h3>
+				{/* {
+					imagenes.map(
+						(img) => (
+						<GifGridItem 
+							key={img.id} 
+							{...img} 
+						/>
+					))
+				} */}
+
+				{/* este boton disparara la ejecucion de un useState
+				<h3>{count}</h3>
+				<button onClick={()=> setCount(count + 1)}>setCount +1</button> */}
+
+				{/*<ol>
+				Cuando una funcion no tiene las {} es que tiene un return implicito () */}
+
+				{/* tarea, mostrar los elementos del use state en lista y que la key sea el id de images */}
+				{/* {images.map(img => (
+						<li key={img.id}>
+							{img.title}
+							<a href="{img.url}" ></a>
+						</li>
+					))}
+				</ol> */}
+				{images.map(
 					(img) => (
-					<GifGridItem 
-						key={img.id} 
-						{...img} 
-					/>
-				))
-			}
-		</div>
+						{
+							/* integracion de componente gifGridItem */
+						},
+						(
+							<GifGridItem
+								key={img.id}
+								// vamos a enviarle las propiedades individuales al componente,
+								// esto con la ayuda de spread ... del array de images en el object img
+								{...img}
+							/>
+						)
+					)
+				)}
+			</div>
+		</>
 	);
 };
