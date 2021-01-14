@@ -1,6 +1,4 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
-import { getGifs } from '../helpers/getGifs';
 import { useFetchGifs } from '../hook/useFetchGifs';
 import { GifGridItem } from './GifGridItem';
 
@@ -11,7 +9,9 @@ export const GifGrid = ({ category }) => {
 
 	// const [images, setImages] = useState([]);
 
-	const { loading } = useFetchGifs();
+	// para renombrar algo que desestructuramos los hacemos:
+	// poniendo el nombrePropiedadDesestructurada : nuevoNombre
+	const { data: images, loading } = useFetchGifs(category);
 
 	// el use effect me permitira ejecutar codigo de manera condicional, util cuando tengo un ciclo infinito de ejecucion
 	// este recibe una funcion la cual es la que quiero ejecutar
@@ -28,16 +28,11 @@ export const GifGrid = ({ category }) => {
 		<>
 			<div className="card-grid">
 				<h3>{category}</h3>
-				{loading ? 'Cargando...' : 'carga culminada.'}
-				{/* {
-					imagenes.map(
-						(img) => (
-						<GifGridItem 
-							key={img.id} 
-							{...img} 
-						/>
-					))
-				} */}
+				{/* el && es una manera corta de evaluar solo una condicion, es un if sin el else */}
+				{loading && <p>Cargando...</p>}
+				{images.map((img) => (
+					<GifGridItem key={img.id} {...img} />
+				))}
 				{/* este boton disparara la ejecucion de un useState
 				<h3>{count}</h3>
 				<button onClick={()=> setCount(count + 1)}>setCount +1</button> */}
