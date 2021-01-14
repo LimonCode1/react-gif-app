@@ -57,7 +57,7 @@ export const GifGrid = ({ category }) => {
 								// esto con la ayuda de spread ... del array de images en el object img
 								{...img}
 							/> */}
-				{/* ) ) )} */} */}
+				{/* ) ) )} */}
 			</div>
 		</>
 	);
