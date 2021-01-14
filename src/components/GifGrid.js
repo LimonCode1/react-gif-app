@@ -1,8 +1,8 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
-import { getGifs } from '../helpers/getGifs';
+// import { useEffect, useState } from 'react';
+// import { getGifs } from '../helpers/getGifs';
 import { useFetchGifs } from '../hook/useFetchGifs';
-import { GifGridItem } from './GifGridItem';
+// import { GifGridItem } from './GifGridItem';
 
 export const GifGrid = ({ category }) => {
 	// este useState es de ejemplo para comprender el useEffect video 74.
