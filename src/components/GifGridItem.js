@@ -8,7 +8,7 @@ export const GifGridItem = ({ id, title, url }) => {
 	console.log('url: ' + url);
 	console.groupEnd();
 	return (
-		<div className="card w-64 m-8 bg-yellow-500 font-sans shadow-2xl rounded-lg">
+		<div className="animate__animate animate__fadeInRight card w-64 m-8 bg-blue-400 font-sans shadow-2xl rounded-lg">
 			<img src={url} alt={title}></img>
 			<p>{title}</p>
 		</div>

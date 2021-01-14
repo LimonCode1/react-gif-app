@@ -1,4 +1,4 @@
-export const getGifs = async (category) => {
+export const getFecthGifs = async (category) => {
 	// el metodo encodeURI convierte los espacios que le proporcionemos en %20 para que la url sea valida
 	// y de esta manera la peticion a la api no falle
 	const url = `https://api.giphy.com/v1/gifs/search?q=${encodeURI(
