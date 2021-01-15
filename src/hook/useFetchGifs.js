@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getFecthGifs } from '../helpers/getFecthGifs';
+import { getFetchGifs } from '../helpers/getFetchGifs';
 
 export const useFetchGifs = (category) => {
 	const [objeto, setObjeto] = useState({
@@ -13,7 +13,7 @@ export const useFetchGifs = (category) => {
 	useEffect(() => {
 		// aca es donde en realidad se hara la peticion
 		// y se traeran las imagenes gif
-		getFecthGifs(category).then((imgs) => {
+		getFetchGifs(category).then((imgs) => {
 			setTimeout(() => {
 				console.log(imgs);
 				setObjeto({

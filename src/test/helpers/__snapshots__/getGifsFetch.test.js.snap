@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas en el helper getGifsFetch Debe tener un argumento 1`] = `
+<getFecthGifs
+  category="test del componente"
+/>
+`;
